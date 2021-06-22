@@ -1,0 +1,49 @@
+{{>layout/header}}
+<article>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">-->
+
+    <div class="container" role="main" style="margin-top: 20px; width: 60vw; margin-left: 20vw;">
+
+        <form>
+            <div class="mb-3">
+                <label for="title">글 번호</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0" id="id" value="{{mentor.id}}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="title">제목</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0" id="title" value="{{mentor.title}}">
+            </div>
+            <div class="mb-3">
+                <label for="author">작성자</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0" id="author" value="{{mentor.user.name}}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="content">내용</label>
+                <textarea class="form-control border-right-0 border-left-0 border-top-0" id="content" style="height:50%; min-height: 350px">{{mentor.content}}</textarea>
+            </div>
+            <div class="mb-3">
+                <label for="htype">카테고리</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0" id="htype" value="{{mentor.htype}}">
+            </div>
+
+            <div class="mb-3">
+                <label for="career">경력</label>
+                <input type="number" class="form-control border-right-0 border-left-0 border-top-0" id="career" value="{{mentor.career}}">
+            </div>
+
+        </form>
+
+        <div align="left">
+                <a href="/mentors/+{{mentor.id}}" role="button" class="btn btn-outline-secondary">취소</a>
+                <button type="button" class="btn btn-outline-danger" id="btn-mentordelete">삭제</button>
+            <div style="width: 90px; float: right">
+                <button type="button" class="btn btn-outline-success btn-block" id="btn-mentorupdate2">수정</button><br>
+            </div>
+        </div>
+    </div>
+
+</article>
+
+{{>layout/footer}}

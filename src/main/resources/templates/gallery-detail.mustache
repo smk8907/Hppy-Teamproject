@@ -1,0 +1,174 @@
+{{>layout/header}}
+<article>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/css/style_gallery_detail.css">
+    <link rel="stylesheet" href="/css/style_menu.css">
+
+    <div class="container" role="main"  style="margin-top: 20px; width: 60vw; margin-left: 20vw;">
+        <form>
+            <div class="row float-right">
+                <div class="mb-3 form-group form-inline col-md-6">
+                    <label for="title" class="col-md-6 float-left" style="font-size: 8px;">게시글 번호</label>
+                    <input type="text" class="form-control border-right-0 border-left-0 border-top-0 col-md-6" id="id" value="{{gallery.id}}" style="font-size: 8px;" readonly>
+                </div>
+
+                <div class="mb-3 form-group form-inline col-md-6" style="font-size: 8px;">
+                    <label for="author" class="col-md-4 float-left">작성자</label>
+                    <input type="text" class="form-control border-right-0 border-left-0 border-top-0 col-md-8" id="author" value="{{gallery.user.name}}" style="font-size: 8px;" readonly>
+                </div>
+            </div>
+
+            <br><br>
+
+            <!-- Container for the image gallery -->
+            <div class="container_detail" style="width: 60vw; min-width: 60vw; margin-right: 0; margin-left: 0;padding: 0;" >
+                <!-- Full-width images with number text -->
+                <div class="mySlides">
+                    <div class="numbertext">1 / 5</div>
+                    <img src="https://d2endhb8pwljj4.cloudfront.net/{{gallery.filePath}}" style="width:100%" onerror="this.src='/img/white.png'">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">2 / 5</div>
+                    <img src="https://d2endhb8pwljj4.cloudfront.net/{{gallery.filePath2}}" style="width:100%" onerror="this.src='/img/white.png'">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">3 / 5</div>
+                    <img src="https://d2endhb8pwljj4.cloudfront.net/{{gallery.filePath3}}" style="width:100%"onerror="this.src='/img/white.png'">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">4 / 5</div>
+                    <img src="https://d2endhb8pwljj4.cloudfront.net/{{gallery.filePath4}}" style="width:100%"onerror="this.src='/img/white.png'">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">5 / 5</div>
+                    <img src="https://d2endhb8pwljj4.cloudfront.net/{{gallery.filePath5}}" style="width:100%"onerror="this.src='/img/white.png'">
+                </div>
+
+                <!-- Next and previous buttons -->
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                <!-- Image text -->
+                <div class="caption-container">
+                    <p id="caption"></p>
+                </div>
+
+                <!-- Thumbnail images -->
+                <div class="row" style="width: 60vw;margin-left: 0;margin-right: 0;border-top: 30px solid #222; overflow: hidden">
+                    <div class="column">
+                        <img src="https://d2endhb8pwljj4.cloudfront.net/{{gallery.filePath}}" style="width:100%" onclick="currentSlide(1)" alt="The Woods"onerror="this.src='/img/white.png'">
+                    </div>
+                    <div class="column">
+                        <img src="https://d2endhb8pwljj4.cloudfront.net/{{gallery.filePath2}}" style="width:100%" onclick="currentSlide(2)" alt="Cinque Terre"onerror="this.src='/img/white.png'">
+                    </div>
+                    <div class="column">
+                        <img src="https://d2endhb8pwljj4.cloudfront.net/{{gallery.filePath3}}" style="width:100%" onclick="currentSlide(3)" alt="Mountains and fjords"onerror="this.src='/img/white.png'">
+                    </div>
+                    <div class="column">
+                        <img src="https://d2endhb8pwljj4.cloudfront.net/{{gallery.filePath4}}" style="width:100%" onclick="currentSlide(4)" alt="Northern Lights"onerror="this.src='/img/white.png'">
+                    </div>
+                    <div class="column">
+                        <img src="https://d2endhb8pwljj4.cloudfront.net/{{gallery.filePath5}}" style="width:100%" onclick="currentSlide(5)" alt="Nature and sunrise"onerror="this.src='/img/white.png'">
+                    </div>
+                </div>
+
+            </div>
+
+            <div>
+                <div  class="row mt-3">
+                    <div class="col-md-8">
+                        <label for="title">제목</label>
+                        <input type="text" class="form-control border-right-0 border-left-0 border-top-0" id="title" value="{{gallery.title}}" readonly>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="price">멘토 연락처</label>
+                        <input type="text" class="form-control border-right-0 border-left-0 border-top-0" id="title" value="{{gallery.user.email}}" readonly>
+                    </div>
+                </div>
+
+
+                <div class="mt-3">
+                    <div class="float-right" style="width:100px;margin:10px 0;">
+                        <a href="appl/{{gallery.id}}" role="button" class="btn btn-outline-primary btn-block">신청내역</a>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <div>
+                        <label for="content">내용</label>
+                        <textarea class="form-control border-right-0 border-left-0 border-top-0" id="content" style="height:50%; min-height: 350px" readonly>{{gallery.content}}</textarea>
+                    </div>
+                </div>
+
+                <div class="mt-3">
+                    <a href="/category" role="button" class="btn btn-outline-info">뒤로</a>
+                    <a href="{{gallery.id}}/appls/save" role="button" class="btn btn-dark">신청하기 </a>
+                </div>
+
+
+            </div>
+
+            <div  id="row-1" class="menu" style="margin-top: 20px;">
+                <div class="tab">
+                    <ul class="title">
+                        <li><a href="#" class="show" id="tab-1"><h2>
+                            사용자들의 생생한 후기
+                        </h2></a></li>
+                        <li><a href="#" id="tab-2"><h2>
+                            QnA
+                        </h2></a></li>
+                    </ul>
+                    <ul class="panel">
+                        <li id="content-1">
+                            <div style="padding: 10px; background-color: #d2d2d2;overflow: scroll">
+
+                                {{#gallerycommentInfoList}}
+                                    <input type="text" id="comment" value="{{gallerycommentUserName}}" class="border-0 bg-transparent" style="padding: 10px;" readonly>
+                                    <br>
+                                    <input type="text" id="comment" value="{{galleryComment.content}}" class="border-0" style="padding: 10px; width: 100%;  background:linear-gradient(-45deg, transparent 5px, white 0);" placeholder="댓글을 입력하세요.." readonly>
+                                    <br>
+                                {{/gallerycommentInfoList}}
+
+                                <a href="{{gallery.id}}/gallerycomment/save" role="button" class="btn btn-dark mt-4">후기 작성 </a>
+                            </div>
+                        </li>
+                        <li id="content-2">
+                            <div style="padding: 10px; background-color: #d2d2d2;overflow: scroll">
+
+                                {{#qnAInfoList}}
+                                    <input type="text" id="comment" value="{{qnaUserName}}" class="border-0 bg-transparent" style="padding: 10px;" readonly>
+                                    <br>
+                                    <input type="text" id="comment" value="{{qnA.content}}" class="border-0" style="padding: 10px; width: 100%;  background:linear-gradient(-45deg, transparent 5px, white 0);" placeholder="댓글을 입력하세요.." readonly>
+                                    <br>
+                                {{/qnAInfoList}}
+
+                                <a href="{{gallery.id}}/qna/save" role="button" class="btn btn-dark mt-4">QnA 작성 </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!--            -->
+            <!--            -->
+            <!--            -->
+
+
+
+        </form>
+    </div>
+</article>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!--index.js 추가-->
+<script src="/js/app/index.js"></script>
+<script type="text/javascript" src="/js/script_search.js"></script>
+<script type="text/javascript" src="/js/script_menu.js"></script>
+<script type="text/javascript" src="/js/script_gallery_detail.js"></script>
+</body>
+</html>

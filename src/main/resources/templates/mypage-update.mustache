@@ -1,0 +1,39 @@
+{{>layout/header}}
+<article>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+
+    <div class="container" role="main" style="margin-top: 20px; width: 60vw; margin-left: 20vw;">
+
+        <form>
+            <div class="mb-3">
+                <label for="id">회원 번호</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0" id="id" value="{{user.id}}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="name">이름</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0" id="name" value="{{user.name}}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="nickname">닉네임</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0" id="nickname" value="{{user.nickname}}">
+
+            </div>
+            <div class="mb-3">
+                <label for="email">이메일</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0" id="email" value="{{user.email}}" readonly>
+            </div>
+
+        </form>
+
+        <div align="left">
+            <button type="button" class="btn btn-outline-danger" id="btn-mypage-delete">회원탈퇴</button>
+            <div style="float: right">
+            <button type="button" class="btn btn-outline-success" id="btn-mypage-update">수정완료</button>
+        </div>
+        </div>
+    </div>
+
+</article>
+
+{{>layout/footer}}

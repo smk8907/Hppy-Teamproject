@@ -1,0 +1,33 @@
+/*common*/
+a {
+    text-decoration:none;
+}
+
+/*.menu {*/
+/*    width:60vw;*/
+/*    !*margin:0 auto;*!*/
+/*    margin-left: 20vw;*/
+/*}*/
+
+/*탭메뉴 */
+.tab ul{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+.tab ul.title li {float:left; }
+
+#tab-2{
+    margin-left: 20px;
+}
+
+/*안쓰는 탭*/
+.tab ul.title li a {display:block; background:white;padding:5px 10px; color:black; }
+/*쓰는 탭*/
+.tab ul.title li a.show {background:#d2d2d2}
+
+.tab ul.title:after {content:""; display:block; clear:both; }
+
+.tab ul.panel li{display:none; background:#d2d2d2;}
+
+

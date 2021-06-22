@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>스프링부트 웹서비스</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/style_main.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        @media screen and (max-width: 1200px) {
+            .frm {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="header1">
+        <ul>
+            <li><a href="/mentors">멘토 지원</a></li>
+            <li><a href="/notices">공지사항</a></li>
+            {{#userEmail}}
+                <li>
+                    <a href="/login">로그인</a>
+                </li>
+            {{/userEmail}}
+            {{^userEmail}}
+                <li>
+                    <a href="/logout">로그아웃</a>
+                </li>
+            {{/userEmail}}
+
+            <!--            <li>-->
+            <!--                <p sec:authorize="isAnonymous()"><a th:href="'/login'">로그인</a></p>-->
+            <!--                <p sec:authorize="isAuthenticated()"><a th:href="'/logout'">로그아웃</a></p>-->
+            <!--            </li>-->
+        </ul>
+    </div>
+
+    <div class="header2">
+        <ul id="ul1">
+            <li>
+                <a href="/category" >
+                    <img src="/img/menu-icon.png" alt="" width="40px" height="40px" >
+                </a>
+            </li>
+
+            <li>
+                <div class="main_img">
+                    <a href="/main">
+                        <img src="/img/swimming-pool.png" alt="" width="40px" height="40px">
+                        <h2 style="display:inline;margin-left:15px">Hppy</h2>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <form class="frm" name="categorysearch" >
+                    <input type="search" id = "category" placeholder="Search..."/>
+                    <button onclick="filter()" style="border: none; background: transparent;"><img src="/img/search.png" style="width: 20px; background: transparent;"></button>
+                </form>
+            </li>
+        </ul>
+
+        <ul id="ul2">
+            <li>
+                <a href="/lists">
+                    <img src="/img/chat.png" alt="" width="30px" height="30px">
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+</br>
+</br>
+</br>
+</br>
+
+<h1 align="center">권한이 없습니다.</h1>
+</br>
+<h2 align="center"><a href="/category" role="button" class="btn btn-outline-secondary">이전으로 돌아가기</a></h2>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<!--index.js 추가-->
+<script src="/js/app/index.js"></script>
+<script type="text/javascript" src="/js/script_main.js"></script>
+<script type="text/javascript" src="/js/script_role.js"></script>
+<script type="text/javascript" src="/js/script_search.js"></script>
+</body>
+</html>

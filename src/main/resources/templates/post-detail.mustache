@@ -1,0 +1,79 @@
+{{>layout/header}}
+<article>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <div class="container" role="main" style="margin-top: 20px; width: 60vw; margin-left: 20vw;">
+        <form>
+
+            <div class="row float-right">
+                <div class="mb-3 form-group form-inline col-md-6">
+                    <label for="title" class="col-md-6 float-left" style="font-size: 8px;">게시글 번호</label>
+                    <input type="text" class="form-control border-right-0 border-left-0 border-top-0 col-md-6" id="id" value="{{board.id}}" style="font-size: 8px;" readonly>
+                </div>
+
+                <div class="mb-3 form-group form-inline col-md-6" style="font-size: 8px;">
+                    <label for="author" class="col-md-4 float-left">작성자</label>
+                    <input type="text" class="form-control border-right-0 border-left-0 border-top-0 col-md-8" id="author" value="{{board.user.nickname}}" style="font-size: 8px;" readonly>
+                </div>
+            </div>
+            <br><br>
+            <div class="mt-3">
+                <label for="title">제목</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0" id="title" value="{{board.title}}" readonly>
+            </div>
+
+            <div class="mt-3">
+                <label for="content">내용</label>
+                <textarea class="form-control border-right-0 border-left-0 border-top-0" id="content" style="height:50%; min-height: 350px" readonly>{{board.content}}</textarea>
+            </div>
+        </form>
+
+        <div class="mt-3">
+            <div align="left">
+                <a href="/lists" role="button" class="btn btn-outline-info">뒤로</a>
+                {{#board}}
+                    <button type="button" class="btn btn-outline-danger" id="btn-delete">삭제</button>
+                <div class="float-right">
+                    <button type="button" class="btn btn-outline-warning btn-block" id="btn-update1">수정하기</button>
+                </div>
+                {{/board}}
+            </div>
+        </div>
+
+<!--        # dlqudwn comment-->
+        <div class="mt-3" style="padding: 10px 20px; background:#d2d2d2;">
+            {{#commentInfoList}}
+<!--                댓글 작성자-->
+                <input type="text" id="comment" value="{{commentUserName}}" class="border-0 bg-transparent" style="padding: 10px;" readonly>
+<!--                댓글 입력 시간이 있으면 좋을것 같은 느낌-->
+<!--                <input type="text" id="comment" value="{{commentUserName}}" class="border-0 bg-transparent" style="padding: 10px" readonly>-->
+                <br>
+<!--                댓글 내용-->
+                <input type="text" id="comment" value="{{comment.content}}" class="border-0" style="padding: 10px; width: 100%;  background:linear-gradient(-45deg, transparent 5px, white 0);" placeholder="댓글을 입력하세요.." readonly>
+                <br>
+            {{/commentInfoList}}
+
+            <a href="{{board.id}}/comment/save" role="button" class="btn btn-dark mt-4">댓글쓰기 </a>
+        </div>
+<!--        # 댓글-->
+<!--        <table class="table table-horizontal table-bordered" style="margin-top: 10px">-->
+<!--            <thead class="thead-strong">-->
+<!--                <tr>-->
+<!--                    <th>작성자</th>-->
+<!--                    <th>내용</th>-->
+<!--                </tr>-->
+<!--            </thead>-->
+
+<!--            {{#commentInfoList}}-->
+<!--                <tr>-->
+<!--                    <td>{{commentUserName}}</td>-->
+<!--                    <td>{{comment.content}}</td>-->
+<!--                </tr>-->
+<!--            {{/commentInfoList}}-->
+<!--        </table>-->
+
+    </div>
+
+</article>
+
+{{>layout/footer}}

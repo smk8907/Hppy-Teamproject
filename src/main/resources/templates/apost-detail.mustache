@@ -1,0 +1,41 @@
+{{>layout/header}}
+<article>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+    <div class="container" role="main" style="margin-top: 20px; width: 60vw; margin-left: 20vw;">
+
+        <form>
+
+            <div class="mb-3">
+                <label for="title">게시글 번호</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0 col-md-6" id="id" value="{{board.id}}" readonly>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="title">제목</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0 col-md-6" id="title" value="{{board.title}}" readonly>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="author">작성자</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0 col-md-6" id="author" value="{{board.user.nickname}}" readonly>
+            </div>
+
+
+            <div class="mb-3">
+                <label for="content">내용</label>
+                <textarea class="form-control border-right-0 border-left-0 border-top-0 col-md-6" id="content" readonly>{{board.content}}</textarea>
+            </div>
+
+        </form>
+
+        <div >
+            <a href="/admin/board/lists" role="button" class="btn btn-outline-secondary">취소</a>
+            <button type="button" class="btn btn-outline-danger" id="btn-admin-bdelete">삭제</button>
+        </div>
+    </div>
+</article>
+
+{{>layout/footer}}

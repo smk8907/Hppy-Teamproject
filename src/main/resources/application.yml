@@ -1,0 +1,21 @@
+cloud:
+  aws:
+    credentials:
+      accessKey:
+      secretKey:
+    s3:
+      bucket:
+    region:
+      static:
+    stack:
+      auto: false
+
+
+spring:
+  config:
+    use-legacy-processing: true
+    #S3 저장할 수 이 ㅆ는 파일의 최대 용량이 작으므로 조절해준다.
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 20MB

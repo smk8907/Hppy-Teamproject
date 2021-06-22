@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>자유게시판</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/style_main.css">
+  <link rel="stylesheet" href="/css/style_search.css">
+  <style>
+    body{
+      margin-bottom:60px;
+    }
+    @media screen and (max-width: 1200px) {
+      .frm {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 850px) {
+      .list_img h6 {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 705px) {
+      .list_img h2 {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="header1">
+    <ul>
+      <li><a th:href="'/mentors'">멘토 지원</a></li>
+      <li><a th:href="'/notices'">공지사항</a></li>
+      <li>
+        <p sec:authorize="isAnonymous()"><a th:href="'/login'">로그인</a></p>
+        <p sec:authorize="isAuthenticated()"><a th:href="'/logout'">로그아웃</a></p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="header2">
+    <ul id="ul1">
+      <li>
+        <a href="/category" >
+          <img src="/img/menu-icon.png" alt="" width="40px" height="40px" >
+        </a>
+      </li>
+
+      <li>
+        <div class="main_img">
+          <a href="main">
+            <img src="/img/swimming-pool.png" alt="" width="40px" height="40px">
+            <h2 style="display:inline;margin-left:15px">Hppy</h2>
+          </a>
+        </div>
+      </li>
+      <li>
+        <form class="frm" name="categorysearch" >
+          <input type="search" id = "category" placeholder="Search..."/>
+          <button onclick="filter()" style="border: none; background: transparent;"><img src="img/search.png" style="width: 20px; background: transparent;"></button>
+        </form>
+      </li>
+    </ul>
+
+    <ul id="ul2">
+      <li>
+        <a href="lists">
+          <img src="/img/chat.png" alt="" width="30px" height="30px">
+        </a>
+      </li>
+
+      <li>
+        <a href="mypage" style="float : right;">
+          <th:block th:if="${userPicture != null}">
+            <input type="image" id="picture1" th:src="${userPicture}" alt="" width="35px" height="35px">
+          </th:block>
+        </a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<!--list.html 대문 이미지-->
+<div style="
+  /*background-color: #495057;*/
+  background-image: url('img/lib.jpg');
+  background-repeat : no-repeat;
+  background-size : cover;
+  width: 100vw;
+  height: 40vh;" class="list_img">
+  <div style="display: flex; margin-left: 20vw;width: 60vw; height: 100%; flex-direction: column; justify-content: center; align-content:center; color: white; text-align: center" >
+    <h1 style="font-size: 60px;"><strong>START YOUR HOBBY</strong></h1>
+    <h2>Try EveryThing What U Want</h2>
+    <br>
+    <h6>Try EveryThing What U WantTry EveryThing What U WantTry EveryThing What U WantTry EveryThing What U Want</h6>
+  </div>
+</div>
+
+<div class="content" style="margin-left: 20vw; width: 60vw;">
+  <div class="container">
+    <br/><br/>
+<!--    등록버튼-->
+    <div class="float-right" style="width:100px;margin:10px 0;">
+      <a href="/posts/save" class="btn btn-outline-dark btn-block" id="btn-noticeclick">등록</a>
+    </div>
+<!--    리스트테이블-->
+    <div class="table-responsive">
+      <table class="table custom-table">
+        <thead>
+        <tr>
+          <th scope="col" style="width: 10%;">글 번호</th>
+          <th scope="col" style="width: 30%; text-align: center">제목</th>
+          <th scope="col" style="width: 30%;">작성자</th>
+<!--          <th scope="col" style="width: 10%;"></th>-->
+          <th scope="col" style="width: 20%;">작성일</th>
+          <th scope="col" style="width: 10%;">조회수</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="board : ${boardList}">
+          <td th:text="${board.id}"></td>
+          <td><a th:href="'/posts/'+${board.id}" th:text="${board.title}"></a></td>
+          <td style="display: flex; align-items: center">
+            <a href="#">
+              <img th:src="${board.user.picture}" alt="Person" class="img-thumbnail" style="border-radius: 70%; width:40px; min-width: 40px;">
+            </a>
+            <p th:text="${board.user.nickname}"></p>
+          </td>
+          <td th:text="${board.modifiedDate} ?
+                    ${#temporals.format(board.modifiedDate,'yyyy-MM-dd HH:mm')} : ${board.modifiedDate}"></td>
+          <td th:text="${board.viewCount}"></td>
+        </tr>
+        </tbody>
+
+      </table>
+    </div>
+    <br>
+  </div>
+
+<!--  리스트 검색-->
+  <form action="/posts/search" method="GET" id="search_list">
+    <div style="padding: 10px; border: 2px solid black; border-radius: 15px; ">
+      <input name="keyword" type="text" placeholder="검색어를 입력해주세요" style="border: none; width: 20vw;">
+      <button style="border: none; background: transparent;" >
+        <img src="img/search.png" style="width: 20px; background: transparent;">
+      </button>
+    </div>
+  </form>
+
+</div>
+
+<br>
+<br>
+<br>
+
+<!--페이징 버튼-->
+<nav aria-label="Page navigation" style="text-align:center; margin-left:20vw; width: 60vw;">
+  <ul class="pagination justify-content-sm-around align-self-center" th:with="startNumber=${T(Math).floor(boardList.number/10)}*10+1, endNumber=(${boardList.totalPages} > ${startNumber}+9) ? ${startNumber}+9 : ${boardList.totalPages}" >
+
+    <li><a aria-label="Previous" href="/board/lists?page=1" class="btn btn-outline-dark" role="button">&laquo;</a></li>
+    <li th:style="${boardList.first} ? 'display:none'">
+      <a th:href="@{/lists(page=${boardList.number})}">&lsaquo;</a>
+    </li>
+
+    <li th:each="page :${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number}+1) ? 'active'">
+      <a th:href="@{/lists(page=${page})}" th:text="${page}"><span class="sr-only"></span></a>
+    </li>
+
+    <li th:style="${boardList.last} ? 'display:none'">
+      <a th:href="@{/lists(page=${boardList.number}+2)}">&rsaquo;</a>
+    </li>
+    <li><a aria-label="Next" th:href="@{/lists(page=${boardList.totalPages})}" class="btn btn-outline-dark" role="button">&raquo;</a></li>
+  </ul>
+</nav>
+
+<footer>
+  <div class="footer1">
+    <h6><strong>고객센터</strong></h6>
+    <p>대표 : 강성민</p>
+    <p>02-251-1801</p>
+    <p>dlqudwn0424@gmail.com</p>
+  </div>
+
+  <div class="footer2">
+    <h6><strong>WithHobby</strong></h6>
+    <p>이용약관</p>
+    <p>공지사항</p>
+    <p></p>
+  </div>
+</footer>
+
+
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/script_search_btn.js"></script>
+<script type = "text/javascript" src = "/js/script_search.js"></script>
+</body>
+</html>
+

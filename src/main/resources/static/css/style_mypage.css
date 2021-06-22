@@ -1,0 +1,58 @@
+section {
+  width: 60vw;
+  margin-top: 0;
+  margin-left: 20vw;
+}
+.mypage1 {
+  min-height: 200px;
+  display: flex;
+}
+.mypage2 {
+  min-height: 60px;
+  border-bottom: 1px solid #d2d2d2;
+  display: flex;
+  align-items: center;
+}
+.mypage2 > a{
+  font-size: 16px;
+  margin-left: 60px;
+  text-decoration: none;
+  color : black;
+}
+
+.m1 {
+  width: 25%;
+  height: 100%;
+  padding: 40px;
+}
+.m2 {
+  width: 50%;
+  padding: 40px 80px;
+}
+
+.user_profile{
+  display: flex;
+  flex-direction: column;
+}
+.user_profile input {
+  border: none;
+  float: right;
+}
+#picture {
+
+}
+
+/*.mypage1 .m2 a{*/
+/*  margin-left: 10px;*/
+/*  color : black;*/
+/*  border: 2px solid black;*/
+/*  border-radius: 12px;*/
+/*  background-color: white;*/
+/*  font-size: 10px;*/
+/*  text-decoration: none;*/
+/*  padding-left: 10px;*/
+/*  padding-right: 10px;*/
+/*}*/
+
+
+

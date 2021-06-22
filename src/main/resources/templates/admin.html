@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        div {
+            display: flex;
+            justify-content: center;
+            margin-top: 40vh;
+        }
+        div a {
+            width: 200px;
+            height: 200px;
+        }
+        div img {
+            width: 100%;
+            height: 100%;
+        }
+        p {
+            text-align: center;
+            text-decoration: none;
+        }
+    </style>
+    <title>관리자 페이지</title>
+</head>
+<body>
+
+<!--<button type="button" class="btn btn-secondary">-->
+<!--    <a th:href="'/admin/users/list'">유저 리스트</a>-->
+<!--</button>-->
+<!--<button type="button" class="btn btn-secondary">-->
+<!--    <a th:href="'/admin/board/lists'">자유게시판</a>-->
+<!--</button>-->
+
+<div style="">
+    <a th:href="'/admin/users/list'">
+        <img src="/img/admin.jpg" alt="유저리스트">
+    </a>
+    <a th:href="'/admin/board/lists'" >
+        <img src="/img/bulletin-board.png" alt="관리자 유저 게시판">
+    </a>
+</div>
+
+</body>
+</html>

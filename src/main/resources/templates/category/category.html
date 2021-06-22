@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hobby</title>
+  <link rel="stylesheet" href="/css/style_main.css">
+  <link rel="stylesheet" href="/css/style_category.css">
+  <style>
+    @media screen and (max-width: 1200px) {
+      .frm {
+        display: none;
+      }
+    }
+    @media screen and (max-width: 600px) {
+    }
+  </style>
+</head>
+<body>
+    <header>
+      <div class="header1">
+        <ul>
+          <li><a th:href="'/mentors'">멘토 지원</a></li>
+          <li><a th:href="'/notices'">공지사항</a></li>
+          <li>
+            <p sec:authorize="isAnonymous()"><a th:href="'/login'">로그인</a></p>
+            <p sec:authorize="isAuthenticated()"><a th:href="'/logout'">로그아웃</a></p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="header2">
+        <ul id="ul1">
+          <li>
+            <a href="/category" >
+              <img src="/img/menu-icon.png" alt="" width="40px" height="40px" >
+            </a>
+          </li>
+
+          <li>
+            <div class="main_img">
+              <a href="main">
+                <img src="/img/swimming-pool.png" alt="" width="40px" height="40px">
+                <h2 style="display:inline;margin-left:15px">Hppy</h2>
+              </a>
+            </div>
+          </li>
+          <li>
+            <form class="frm" name="categorysearch" >
+              <input type="search" id = "category" placeholder="Search..."/>
+              <button onclick="filter()" style="border: none; background: transparent;"><img src="img/search.png" style="width: 20px; background: transparent;"></button>
+            </form>
+          </li>
+        </ul>
+
+        <ul id="ul2">
+          <li>
+            <a href="lists">
+              <img src="/img/chat.png" alt="" width="30px" height="30px">
+            </a>
+          </li>
+
+          <li>
+            <a href="mypage" style="float : right;">
+              <th:block th:if="${userPicture != null}">
+                <input type="image" class="form-control" id="picture1" th:src="${userPicture}" alt="" width="35px" height="35px" style="min-width: 35px">
+              </th:block>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </header>
+
+    <div class="category">
+      <div class="row">
+        <div class="column">
+          <h2>스포츠</h2>
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${1}">
+                <p>축구</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${2}">
+                <p>야구</p>
+              </a>
+            </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${3}">
+                <p>농구</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${4}">
+                <p>배구</p>
+              </a>
+            </div>
+          </div>
+
+            <div class="row_in">
+              <div class="column_in">
+                <a th:href="'/category/'+${5}">
+                  <p>배드민턴</p>
+                </a>
+              </div>
+
+              <div class="column_in">
+                <a th:href="'/category/'+${6}">
+                  <p>탁구</p>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${7}">
+                <p>골프</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${8}">
+                <p>테니스</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${9}">
+                <p>스쿼시</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${10}">
+                <p>볼링</p>
+              </a>
+            </div>
+          </div>
+
+        </div>
+        <div class="column">
+          <h2>MMA</h2>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${11}">
+                <p>유도</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${12}">
+                <p>MMA</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${13}">
+                <p>주짓수</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${14}">
+                <p>복싱</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${15}">
+                <p>무에타이</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${16}">
+                <p>킥복싱</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${17}">
+                <p>레슬링</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column" >
+          <h2>피트니스</h2>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${18}">
+                <p>러닝</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${19}">
+                <p>등산</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${20}">
+                <p>필라테스</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${21}">
+                <p>요가</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${22}">
+                <p>사이클</p>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <h2>레져</h2>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${23}">
+                <p>승마</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${24}">
+                <p>서핑</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${25}">
+                <p>페러글라이딩</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${26}">
+                <p>다이빙</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${27}">
+                <p>클라이밍</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${28}">
+                <p>스케이트보드</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${29}">
+                <p>스키</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${30}">
+                <p>사격</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${31}">
+                <p>낚시</p>
+              </a>
+            </div>
+            <div class="column_in">
+              <a th:href="'/category/'+${32}">
+                <p>캠핑</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column" >
+          <h2>공예</h2>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${33}">
+                <p>향수</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${34}">
+                <p>비누</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${35}">
+                <p>악세사리</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${36}">
+                <p>목공</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${37}">
+                <p>자수</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${38}">
+                <p>가죽</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${39}">
+                <p>유리</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${40}">
+                <p>쥬얼리</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${41}">
+                <p>프라모델</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${42}">
+                <p>레진</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${43}">
+                <p>레고</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="column" >
+          <h2>문화예술</h2>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${44}">
+                <p>악기</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${45}">
+                <p>작곡</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${46}">
+                <p>디제잉</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${47}">
+                <p>드로잉</p>
+              </a>
+            </div>
+          </div>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${48}">
+                <p>사진</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="column" >
+          <h2>요리</h2>
+
+          <div class="row_in">
+            <div class="column_in">
+              <a th:href="'/category/'+${49}">
+                <p>요리</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${50}">
+                <p>바리스타</p>
+              </a>
+            </div>
+
+            <div class="column_in">
+              <a th:href="'/category/'+${51}">
+                <p>베이킹</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer1">
+        <h6><strong>고객센터</strong></h6>
+        <p>대표 : 강성민</p>
+        <p>02-251-1801</p>
+        <p>dlqudwn0424@gmail.com</p>
+      </div>
+
+      <div class="footer2">
+        <h6><strong>WithHobby</strong></h6>
+        <p>이용약관</p>
+        <p>공지사항</p>
+        <p></p>
+      </div>
+    </footer>
+    <script type = "text/javascript" src = "/js/script_search.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+#search_list {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+#search_list_input {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+#search_list_paging {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

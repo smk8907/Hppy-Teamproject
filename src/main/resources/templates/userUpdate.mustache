@@ -1,0 +1,108 @@
+<!DOCTYPE HTML>
+<html xmlns:sec="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>스프링부트 웹서비스</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="/css/style_main.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <style>
+        @media screen and (max-width: 1200px) {
+            .frm {
+                display: none;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<header>
+    <div class="header1">
+        <ul>
+            <li><a href="/mentors">멘토 지원</a></li>
+            <li><a href="/notices">공지사항</a></li>
+            {{#userEmail}}
+                <li>
+                    <a href="/login">로그인</a>
+                </li>
+            {{/userEmail}}
+            {{^userEmail}}
+                <li>
+                    <a href="/logout">로그아웃</a>
+                </li>
+            {{/userEmail}}
+
+            <!--            <li>-->
+            <!--                <p sec:authorize="isAnonymous()"><a th:href="'/login'">로그인</a></p>-->
+            <!--                <p sec:authorize="isAuthenticated()"><a th:href="'/logout'">로그아웃</a></p>-->
+            <!--            </li>-->
+        </ul>
+    </div>
+
+    <div class="header2">
+        <ul id="ul1">
+            <li>
+                <a href="/category" >
+                    <img src="/img/menu-icon.png" alt="" width="40px" height="40px" >
+                </a>
+            </li>
+
+            <li>
+                <div class="main_img">
+                    <a href="/main">
+                        <img src="/img/swimming-pool.png" alt="" width="40px" height="40px">
+                        <h2 style="display:inline;margin-left:15px">Hppy</h2>
+                    </a>
+                </div>
+            </li>
+            <li>
+                <form class="frm" name="categorysearch" >
+                    <input type="search" id = "category" placeholder="Search..."/>
+                    <button onclick="filter()" style="border: none; background: transparent;"><img src="/img/search.png" style="width: 20px; background: transparent;"></button>
+                </form>
+            </li>
+        </ul>
+
+        <ul id="ul2">
+            <li>
+                <a href="/lists">
+                    <img src="/img/chat.png" alt="" width="30px" height="30px">
+                </a>
+            </li>
+        </ul>
+    </div>
+</header>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!-- Bootstrap CSS -->
+
+<div class="col-md-12">
+    <div class="col-md-4" style="margin-top: 20px; width: 60vw; margin-left: 20vw;" >
+        <h1>회원 수정</h1>
+        <form class="mt-3">
+            <div class="form-group">
+                <label for="id">유저 번호</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0 col-md-6" id="id" value="{{userInfo.id}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="name">이름</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0 col-md-6" id="name" value="{{userInfo.name}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="email">이메일</label>
+                <input type="text" class="form-control border-right-0 border-left-0 border-top-0 col-md-6" id="email" value="{{userInfo.email}}" readonly>
+            </div>
+            <div class="form-group">
+                <label for="auth">권한</label>
+                <select id="role" name="role" class="form-control border-right-0 border-left-0 border-top-0 col-md-6">
+                    <option value="0">USER</option>
+                    <option value="1">ADMIN</option>
+                    <option value="2">MASTER</option>
+                </select>
+            </div>
+        </form>
+        <a href="/admin/users/list" role="button" class="btn btn-outline-secondary">취소</a>
+        <button type="button" class="btn btn-outline-warning" id="btn-userupdate">수정</button>
+        <button type="button" class="btn btn-outline-danger" id="btn-userdelete">삭제</button>
+    </div>
+</div>
+{{>layout/footer}}
